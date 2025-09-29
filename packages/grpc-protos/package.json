@@ -3,5 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "main": "dist/index.js",
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "grpc-tools": "^1.13.0",
+    "ts-proto": "^2.7.7"
+  },
+  "peerDependencies": {
+    "@grpc/grpc-js": "*",
+    "@nestjs/microservices": "*",
+    "rxjs": "*"
+  },
+  "scripts": {
+    "build": "grpc_tools_node_protoc --plugin=protoc-gen-ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd --ts_proto_out=src --ts_proto_opt=nestJs=true,addGrpcMetadata=true protos/*.proto"
+  }
 }
